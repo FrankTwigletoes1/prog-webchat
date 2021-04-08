@@ -63,5 +63,11 @@ class textInput(threading.Thread):
         while self.running:
             msg = input("")
             try:
-                Client.socket.sendall()
+                Client.socket.sendall(text)
+            except:
+                Exception
+
+
+    def shino(self):
+        self.running = False
 

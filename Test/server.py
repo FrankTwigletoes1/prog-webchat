@@ -1,19 +1,22 @@
-import os 
-from socket import *
-host = "".
-port = 80
+import socket
+
+host = "147.78.30.122"
+port = 25565
 buff = 1024
-addr = (host, port)
-UDPSock = socket(AF_INET, SOCK_DGRAM)
-UDPSock.bind(addr)
-print("Waiting to receive messages...")
+
+succ = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+succ.bind((host, port))
+succ.listen()
+conn, addr = succ.accept()
+
+print("Forbindelse fra: ", str(addr))
 
 while True:
-    (data, addr) = UDPSock.recvfrom(buff)
+    (data, addr) = succ.recv(buff)
+
     print("Received message:" + data)
+
     if data == "exit":
         break
-    UDPSock.close()
-    os._exit(0)
 
-    du en cuck
+    succ.close()
