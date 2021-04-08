@@ -21,6 +21,7 @@ def server():
 def client():
     host = '147.78.30.122'
     port = 80
+
     s = socket.socket()
     s.connect((host, port))
     message = input("->")
@@ -29,4 +30,7 @@ def client():
         data = s.recv(1024)
         message = input("->")
     s.close
+
+server()
+client()
 
