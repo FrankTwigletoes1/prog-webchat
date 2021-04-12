@@ -1,7 +1,7 @@
 import socket, sys, threading
 
 class Server(threading.Thread):
-    def __init__():
+    def __init__(self):
         threading.Thread.__init__(self)
         self.running    = True
         self.connection = None
@@ -62,12 +62,36 @@ class textInput(threading.Thread):
     def run(self):
         while self.running:
             msg = input("")
-            try:
-                Client.socket.sendall(text)
-            except:
-                Exception
+            try: Client.socket.sendall(text)
+            except: Exception
 
+            try: Server.connection.sendall(text)
+            except: Exception
 
     def shino(self):
         self.running = False
+
+
+
+
+
+adress = input("Input ip adress eller tryk enter: ")
+
+if adress == '':
+    server = Server()
+    client = Client()
+    text = textInput()
+    
+    server.start()
+    client.start()
+    text.start()
+
+else:
+    server = Server()
+    client = Client()
+    text = textInput()
+    client.host = adress
+    server.start()
+    client.start()
+    text.start()
 
