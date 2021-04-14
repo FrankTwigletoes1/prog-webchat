@@ -1,18 +1,19 @@
 import socket
 
-HOST = "147.78.30.122"
-PORT = 13000
-addr = (HOST, PORT)
-UDPSock = socket(AF_INET, SOCK_DGRAM)
+HOST = '127.0.0.1'
+PORT = 12345
+
+SOCK = socket.socket()
+SOCK.connect((HOST, PORT))
 
 while True:
+    print(SOCK.recv(1024))
+    
     data = input("Enter message to send or type 'exit': ")
-    bytedata = str.encode(data)
-    UDPSock.sendto(bytedata, addr)
 
     if data == "exit":
         break
+    else:
+        SOCK.sendto(data.encode(), (HOST, PORT))
 
-UDPSock.close()
-
-
+SOCK.close()

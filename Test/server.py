@@ -1,21 +1,21 @@
 import socket
 
-HOST = "147.78.30.122"
-PORT = 25565
+HOST = ''
+PORT = 12345
 
-succ = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-succ.bind((HOST, PORT))
-succ.listen(1)
-conn, addr = succ.accept()
+SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+SOCK.bind((HOST, PORT))
+SOCK.listen(5)
 
-print("Afventer besked...")
+print("Socket aflytter...")
 
 while True:
-    data = succ.recv(1024)
+    CON, ADDR = SOCK.accept()
 
-    print("Received message:" + data)
+    print("Forbindelse oprettet fra ", ADDR)
 
-    if data == "exit":
-        break
+    CON.sendto("Tak for at oprette forbindelse!".encode(), (HOST, PORT))
 
-    succ.close()
+    print("Modtog besked ", CON.recv(1024), " fra ", ADDR)
+
+SOCK.close()
