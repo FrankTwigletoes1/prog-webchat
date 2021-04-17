@@ -1,7 +1,7 @@
 import socket, threading
 
 HOST = ''
-PORT = 27015
+PORT = 12345
 KLIENTER = []
 
 SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
